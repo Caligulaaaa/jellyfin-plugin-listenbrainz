@@ -9,6 +9,10 @@
         align=center
     />
 <p>This plugin allows you to record your music activity directly from Jellyfin server to ListenBrainz.</p>
+
+> **Note:** This is a fork of the [original ListenBrainz plugin](https://github.com/lyarenei/jellyfin-plugin-listenbrainz) 
+> with the addition of an "Allow no minimum play duration" feature that allows sending all now playing updates 
+> as listens regardless of play duration. See [configuration documentation](doc/configuration.md#allow-no-minimum-play-duration) for details.
 </div>
 
 > Visualize and share your music listening history

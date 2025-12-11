@@ -556,7 +556,7 @@ public class PluginImplementation : IDisposable
         var delta = DateUtils.CurrentTimestamp - trackedItem.StartedAt;
         var deltaTicks = delta * TimeSpan.TicksPerSecond;
         var runtime = item.RunTimeTicks ?? 0;
-        Limits.AssertSubmitConditions(deltaTicks, runtime);
+        Limits.AssertSubmitConditions(deltaTicks, runtime, _configService.IsMinimumPlayDurationBypassEnabled);
         _playbackTracker.InvalidateItem(user.Id.ToString(), trackedItem);
     }
 
@@ -604,7 +604,7 @@ public class PluginImplementation : IDisposable
 
         try
         {
-            Limits.AssertSubmitConditions((long)position, data.Item.RunTimeTicks ?? 0);
+            Limits.AssertSubmitConditions((long)position, data.Item.RunTimeTicks ?? 0, _configService.IsMinimumPlayDurationBypassEnabled);
         }
         catch (Exception e)
         {

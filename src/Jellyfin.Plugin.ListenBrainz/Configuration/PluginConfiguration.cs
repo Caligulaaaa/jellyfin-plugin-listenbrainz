@@ -16,6 +16,7 @@ public class PluginConfiguration : BasePluginConfiguration
     private bool? _isMusicBrainzEnabledOverride;
     private bool? _isAlternativeModeEnabled;
     private bool? _isImmediateFavoriteSyncEnabled;
+    private bool? _isMinimumPlayDurationBypassEnabled;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="PluginConfiguration"/> class.
@@ -82,6 +83,15 @@ public class PluginConfiguration : BasePluginConfiguration
     {
         get => _isImmediateFavoriteSyncEnabled ?? true;
         set => _isImmediateFavoriteSyncEnabled = value;
+    }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether minimum play duration check is bypassed.
+    /// </summary>
+    public bool IsMinimumPlayDurationBypassEnabled
+    {
+        get => _isMinimumPlayDurationBypassEnabled ?? false;
+        set => _isMinimumPlayDurationBypassEnabled = value;
     }
 
     /// <summary>

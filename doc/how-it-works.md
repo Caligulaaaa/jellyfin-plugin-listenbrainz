@@ -22,14 +22,15 @@ error handling, besides some basic retrying handled automatically by the API cli
 
 The process for sending a listen begins pretty much the same as for `now playing` listen. There are 2 important
 differences though. The first one is that there is an additional requirement - the playback time of a track must be
-either at least 4 minutes or a half of its runtime. The second one is related to the event triggering this process.
-Depending on the configuration, the plugin will either react on a `PlaybackStopped` or `UserDataSaved` event emitted by
-the server. The first one is emitted when the server is informed about a playback stop. The second one is emitted when
-any kind of user data for that particular track is being saved. The plugin specifically watches for events with a reason
-for `PlaybackFinished`. These two modes are documented in more
-detail [here](configuration.md#use-alternative-event for-recognizing-listens). After checking all other conditions, the
-plugin will send a listen for the specified track. In case of a failure, the listen is automatically saved into a listen
-cache to retry later.
+either at least 4 minutes or a half of its runtime, **unless the "Allow no minimum play duration" option is enabled** 
+(see [configuration](configuration.md#allow-no-minimum-play-duration) for details), which bypasses this check entirely. 
+The second one is related to the event triggering this process. Depending on the configuration, the plugin will either 
+react on a `PlaybackStopped` or `UserDataSaved` event emitted by the server. The first one is emitted when the server 
+is informed about a playback stop. The second one is emitted when any kind of user data for that particular track is 
+being saved. The plugin specifically watches for events with a reason for `PlaybackFinished`. These two modes are 
+documented in more detail [here](configuration.md#use-alternative-event-for-recognizing-listens). After checking all 
+other conditions, the plugin will send a listen for the specified track. In case of a failure, the listen is 
+automatically saved into a listen cache to retry later.
 
 ## Listen cache
 

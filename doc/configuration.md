@@ -135,6 +135,28 @@ Modifies the behavior of favorite sync feature. If enabled, the favorite status 
 ListenBrainz. Standard favorite sync (after playback of track finishes) is not affected. This feature only works if a
 track has required metadata (track MBID) and the MusicBrainz integration is enabled.
 
+##### Allow no minimum play duration
+
+When enabled, all playback events (both "now playing" updates and regular listens) will be sent to ListenBrainz 
+without requiring the default minimum duration check. 
+
+By default, ListenBrainz requires that a track has been played for at least **4 minutes** or **50% of its runtime** 
+(whichever is lower) before it counts as a valid listen. When this option is enabled, this requirement is bypassed, 
+and all playback events will be recorded regardless of play duration.
+
+**Note:** This is a custom feature added to this fork of the plugin. The setting is stored in the plugin configuration 
+under General Config and applies globally to all users.
+
+**Use cases:**
+- Recording very short tracks or interludes
+- Creating a complete listening history even for brief plays
+- Custom ListenBrainz-compatible servers with different requirements
+
+**Implementation details:**
+- The setting is stored as `IsMinimumPlayDurationBypassEnabled` in the plugin configuration file
+- When enabled, the bypass applies to both playback modes (PlaybackStopped and UserDataSaved event modes)
+- The feature is disabled by default to maintain compatibility with standard ListenBrainz behavior
+
 ##### Backup of listens
 
 Save listen locally before it is sent to ListenBrainz. To configure backups, first select the path where the backups

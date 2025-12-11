@@ -57,9 +57,15 @@ public static class Limits
     /// </summary>
     /// <param name="playbackPosition">Playback position in track (in ticks).</param>
     /// <param name="runtime">Track runtime (in ticks).</param>
+    /// <param name="bypassMinimumPlayDuration">Whether to bypass the minimum play duration check.</param>
     /// <exception cref="ListenBrainzException">Conditions have not been met.</exception>
-    public static void AssertSubmitConditions(long playbackPosition, long runtime)
+    public static void AssertSubmitConditions(long playbackPosition, long runtime, bool bypassMinimumPlayDuration = false)
     {
+        if (bypassMinimumPlayDuration)
+        {
+            return;
+        }
+
         var playPercent = ((double)playbackPosition / runtime) * 100;
         if (playPercent >= MinPlayPercentage) return;
         if (playbackPosition >= MinPlayTimeTicks) return;
