@@ -130,6 +130,14 @@
                             <div class="fieldDescription">Sync favorite status immediately.
                                 Requires MusicBrainz metadata and integration to be enabled.</div>
                         </div>
+                        <div class="inputContainer">
+                            <label class="inputLabel inputLabelUnfocused" for="IsMinimumPlayDurationBypassEnabled">
+                                <input is="emby-checkbox" type="checkbox" id="IsMinimumPlayDurationBypassEnabled"
+                                       name="IsMinimumPlayDurationBypassEnabled"/>
+                                <span>Allow no minimum play duration</span>
+                            </label>
+                            <div class="fieldDescription">Send all now playing updates as listens, regardless of play duration.</div>
+                        </div>
                         <div class="sectionTitleContainer flex align-items-center">
                             <h4 class="sectionTitle">Backup of listens</h4>
                         </div>
@@ -417,6 +425,9 @@
             document.querySelector("#IsImmediateFavoriteSyncEnabled")
                 .checked = data.IsImmediateFavoriteSyncEnabled;
 
+            document.querySelector("#IsMinimumPlayDurationBypassEnabled")
+                .checked = data.IsMinimumPlayDurationBypassEnabled;
+
             document.querySelector("#BackupPath")
                 .value = data.BackupPath;
 
@@ -474,6 +485,7 @@
                 IsMusicBrainzEnabled: document.querySelector('#IsMusicBrainzEnabled').checked,
                 IsAlternativeModeEnabled: document.querySelector('#IsAlternativeModeEnabled').checked,
                 IsImmediateFavoriteSyncEnabled: document.querySelector('#IsImmediateFavoriteSyncEnabled').checked,
+                IsMinimumPlayDurationBypassEnabled: document.querySelector('#IsMinimumPlayDurationBypassEnabled').checked,
                 BackupPath: document.querySelector('#BackupPath').value,
                 LibraryConfigs: getLibraryConfigsInputs(),
             }
